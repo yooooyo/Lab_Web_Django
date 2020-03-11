@@ -1,4 +1,10 @@
 {
     "python.pythonPath": "venv\\Scripts\\python.exe",
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "debug.allowBreakpointsEverywhere": true,
+    "python.autoComplete.extraPaths": [
+        "${workspaceFolder}\\vnev\\Lib",
+        "${workspaceFolder}",
+    ],
+    "python.analysis.cacheFolderPath": "${workspaceFolder}\\venv",
 }
