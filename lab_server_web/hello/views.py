@@ -4,8 +4,8 @@ from datetime import datetime
 import re
 
 from django.shortcuts import redirect
-from hello.forms import LogMessageForm
-from hello.models import LogMessage
+from forms import LogMessageForm
+from models import LogMessage
 
 from django.views.generic import ListView
 # Create your views here.
