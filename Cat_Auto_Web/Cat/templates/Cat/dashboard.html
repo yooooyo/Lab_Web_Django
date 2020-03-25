@@ -1,0 +1,201 @@
+{% extends "Cat/layout.html" %}
+
+{% block content %}
+    <div class="py-5" style="">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card rounded" style="background-color:#343a40">
+                        <div class="card-header">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search">
+                                <div class="input-group-append"><button class="btn btn-primary" type="button"><i
+                                            class="fa fa-search"></i></button></div>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive border-0 ">
+                                <table class="table table-dark table-hover table-sm">
+                                    <thead>
+                                        <tr class="">
+                                            <th scope="col"></th>
+                                            <th scope="col">UUT</th>
+                                            <th scope="col">TEST</th>
+                                            <th scope="col">SYSTEM</th>
+                                            <th scope="col">WLAN</th>
+                                            <th scope="col">LAN</th>
+                                            <th scope="col">WWAN</th>
+                                            <th scope="col">BT</th>
+                                            <th scope="col">RFID/NFC</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                    <label class="custom-control-label" for="customCheck1"></label>
+                                                </div>
+                                            </th>
+                                            <th scope="row" class="">
+                                                <div class="col-12 pl-0">
+                                                    <form style="">
+                                                        <small class="form-text text-muted">PLATFORM</small>
+                                                        <label>HP EliteBook 840 G5</label>
+                                                        <small class="form-text text-muted">SERIAL NUMBER</small>
+                                                        <label>5CD43052A</label>
+                                                        <small class="form-text text-muted">TAG</small>
+                                                        <a class="card-link" href="#">Test for WWAN</a>
+                                                    </form>
+                                                </div>
+                                            </th>
+                                            <td>
+                                                <div class="col-12 pl-0">
+                                                    <form style="">
+                                                        <small class="form-text text-muted">TASK</small>
+                                                        <label>Restart.pvt</label>
+                                                        <small class="form-text text-muted">STATUS</small>
+                                                        <label>RUNNING</label>
+                                                    </form>
+                                                    <a href="#" class="card-link">Test Result</a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-12 pl-0">
+                                                    <form style="">
+                                                        <small class="form-text text-muted">BUILDID</small>
+                                                        <label>18WWZ6AT2av</label>
+                                                        <small class="form-text text-muted">IMAGE</small>
+                                                        <label>1709</label>
+                                                        <small class="form-text text-muted">BIOS</small>
+                                                        <label>Q72.Ver 01.06.06</label>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="btn-group w-100">
+                                                            <button class="btn btn-primary dropdown-toggle"
+                                                                data-toggle="dropdown" aria-expanded="false"> Module
+                                                            </button>
+                                                            <div class="dropdown-menu" x-placement="bottom-start"
+                                                                style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                                                <a class="dropdown-item" href="#">Jefferson Peak</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <form>
+                                                            <small class="form-text text-muted">Driver</small>
+                                                            <label>20.0.09</label>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="btn-group w-100">
+                                                            <button class="btn btn-primary dropdown-toggle"
+                                                                data-toggle="dropdown" aria-expanded="false"> Module
+                                                            </button>
+                                                            <div class="dropdown-menu" x-placement="bottom-start"
+                                                                style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                                                <a class="dropdown-item" href="#">Jefferson Peak</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <form>
+                                                            <small class="form-text text-muted">Driver</small>
+                                                            <label>20.0.09</label>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="btn-group w-100">
+                                                            <button class="btn btn-primary dropdown-toggle"
+                                                                data-toggle="dropdown" aria-expanded="false"> Module
+                                                            </button>
+                                                            <div class="dropdown-menu" x-placement="bottom-start"
+                                                                style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                                                <a class="dropdown-item" href="#">Jefferson Peak</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <form>
+                                                            <small class="form-text text-muted">Driver</small>
+                                                            <label>20.0.09</label>
+                                                            <small class="form-text text-muted">Modem</small>
+                                                            <label>20.0.09</label>
+                                                            <small class="form-text text-muted">UDE</small>
+                                                            <label>20.0.09</label>
+                                                            <small class="form-text text-muted">GNSS</small>
+                                                            <label>20.0.09</label>
+                                                            <small class="form-text text-muted">Firmware</small>
+                                                            <label>20.0.09</label>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="btn-group w-100">
+                                                            <button class="btn btn-primary dropdown-toggle"
+                                                                data-toggle="dropdown" aria-expanded="false"> Module
+                                                            </button>
+                                                            <div class="dropdown-menu" x-placement="bottom-start"
+                                                                style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                                                <a class="dropdown-item" href="#">Jefferson Peak</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <form>
+                                                            <small class="form-text text-muted">Driver</small>
+                                                            <label>20.0.09</label>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="btn-group w-100">
+                                                            <button class="btn btn-primary dropdown-toggle"
+                                                                data-toggle="dropdown" aria-expanded="false"> Module
+                                                            </button>
+                                                            <div class="dropdown-menu" x-placement="bottom-start"
+                                                                style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                                                <a class="dropdown-item" href="#">Jefferson Peak</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <form>
+                                                            <small class="form-text text-muted">Driver</small>
+                                                            <label>20.0.09</label>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

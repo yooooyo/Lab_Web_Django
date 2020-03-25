@@ -8,7 +8,7 @@
             "name": "Python: Django",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}\\lab_server_web\\manage.py",
+            "program": "${workspaceFolder}\\Cat_Auto_Web\\manage.py",
             "console": "integratedTerminal",
             "args": [
                 "runserver",

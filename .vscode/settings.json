@@ -1,10 +1,12 @@
 {
-    "python.pythonPath": "venv\\Scripts\\python.exe",
+    "python.pythonPath": "c:\\Users\\HP\\Documents\\Projects\\HP_Projects\\Lab_Web_Django\\.env\\Scripts\\python.exe",
     "git.ignoreLimitWarning": true,
     "debug.allowBreakpointsEverywhere": true,
     "python.autoComplete.extraPaths": [
-        "${workspaceFolder}\\vnev\\Lib",
+        "${workspaceFolder}\\.env\\Lib",
         "${workspaceFolder}",
     ],
-    "python.analysis.cacheFolderPath": "${workspaceFolder}\\venv",
+    "python.venvFolders": ["${workspaceFolder}}\\.env"],
+    "python.analysis.cacheFolderPath": "${workspaceFolder}\\.env",
+    "editor.mouseWheelZoom": true,
 }
