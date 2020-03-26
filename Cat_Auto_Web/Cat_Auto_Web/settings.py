@@ -79,7 +79,7 @@ DATABASES = {
         'NAME': 'test',				            # 自定義資料庫連線名
         'USER': 'cat_user',					                # 資料庫連線賬戶
         'PASSWORD': 'P@ssw0rd',				        # 資料庫連線密碼
-        'HOST': 'commlabfortest.duckdns.org\SQLEXPRESS',				            # 資料庫服務地址
+        'HOST': 'lab_server\SQLEXPRESS',				            # 資料庫服務地址
         'PORT': '49173',					                # 資料庫連線埠
         'OPTIONS':{
             'driver':'SQL Server Native Client 11.0',	# ODBC連線應用驅動
