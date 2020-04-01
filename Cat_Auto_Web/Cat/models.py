@@ -301,3 +301,17 @@ class Catfiles(models.Model):
         managed = False
         db_table = 'catfiles'
         unique_together = (('parent_path_locator', 'name'),)
+
+class Erdtable(models.Model):
+    id = models.BigAutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    deliverables_name = models.CharField(db_column='Deliverables_Name', max_length=150, blank=True, null=True)  # Field name made lowercase.
+    short_name = models.CharField(db_column='Short_Name', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    owner = models.CharField(db_column='Owner', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    vender_id = models.CharField(db_column='Vender_ID', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    device_id = models.CharField(db_column='Device_ID', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    subsys_vender_id = models.CharField(db_column='Subsys_Vender_ID', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    subsys_device_id = models.CharField(db_column='Subsys_Device_ID', max_length=50, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'ERDTable'
