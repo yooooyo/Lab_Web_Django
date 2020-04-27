@@ -3,6 +3,7 @@ from Cat.models import Erdtable
 from django.views.generic import ListView 
 import re
 
+
 catinfo = list(CatInfo.objects.all().values().order_by('-lastusedtime'))
 erdtable_modules_hwid = Erdtable.objects.all().values('short_name', 'vender_id', 'device_id', 'subsys_vender_id', 'subsys_device_id')
 
