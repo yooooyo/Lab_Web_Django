@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": ".env\\Scripts\\python.exe",
+    "python.pythonPath": "c:\\Users\\ZapMaster PV\\Documents\\Work\\HP_Project\\Lab_Web_Django\\.env\\Scripts\\python.exe",
     "git.ignoreLimitWarning": true,
     "debug.allowBreakpointsEverywhere": true,
     "python.autoComplete.extraPaths": [

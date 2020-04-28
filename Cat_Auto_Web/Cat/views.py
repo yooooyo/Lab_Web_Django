@@ -7,8 +7,7 @@ from Cat.models import CatInfo
 # def dashboard(request):
 #     return render(request,'Cat/dashboard.html')
 
-def testresult(request,sn):
-    return render(request, 'Cat/testresult.html')
+
 
 def taskmanager(request):
     return render(request, 'Cat/taskmanager.html')
