@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "c:\\Users\\ZapMaster PV\\Documents\\Work\\HP_Project\\Lab_Web_Django\\.env\\Scripts\\python.exe",
+    "python.pythonPath": ".env\\Scripts\\python.exe",
     "git.ignoreLimitWarning": true,
     "debug.allowBreakpointsEverywhere": true,
     "python.autoComplete.extraPaths": [
@@ -9,4 +9,6 @@
     "python.venvFolders": ["${workspaceFolder}}\\.env"],
     "python.analysis.cacheFolderPath": "${workspaceFolder}\\.env",
     "editor.mouseWheelZoom": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
 }

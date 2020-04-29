@@ -2,5 +2,19 @@
 {% extends 'Cat/layout.html' %}
 
 {% block content %}
-
+{% if tasks_logs %}
+    {% for task,logs in tasks_logs %}
+        {{task.id}}
+        <br>
+        {% if logs %}
+            {% for log in logs %}
+                {{log.detail}}
+                <br> 
+            {% endfor %}
+        {% else %}
+            {{task.result}}
+        {% endif %}
+        <hr>
+    {% endfor %}
+{% endif %}
 {% endblock  %}

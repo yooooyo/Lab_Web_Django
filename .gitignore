@@ -4998,3 +4998,7 @@
 .env/Lib/site-packages/pip-20.0.2.dist-info/RECORD
 .env/Lib/site-packages/pip-20.0.2.dist-info/top_level.txt
 .env/Lib/site-packages/pip-20.0.2.dist-info/WHEEL
+Cat_Auto_Web/Cat/__pycache__/dashboard.cpython-37.pyc
+Cat_Auto_Web/Cat/__pycache__/testresult.cpython-37.pyc
+Cat_Auto_Web/Cat/__pycache__/urls.cpython-37.pyc
+Cat_Auto_Web/Cat/__pycache__/views.cpython-37.pyc
