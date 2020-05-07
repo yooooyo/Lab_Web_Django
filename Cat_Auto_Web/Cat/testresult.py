@@ -3,7 +3,7 @@ from Cat.models import Tasktable
 from Cat.models import Loglisttable
 from django.shortcuts import render
 from django.http import HttpResponse
-
+import re
 
 def capturelog(sn):
     tasks = list(Tasktable.objects.filter(sn=sn).values())
@@ -17,7 +17,25 @@ def capturelog(sn):
         if task not in tasks_logs:
             tasks_logs.append((task,[log for log in logs if log['taskid']== task['id']]))
 
-    return tasks_logs
+    for task,logs in tasks_logs:
+        if task['state'] == 'DONE':
+            result = task['result']
+            if not task['result']:
+                for log in logs:
+                    result = log['detail']
+                    if not result:
+                        task['summary'] = 'pass'
+                    else:
+                        task['summary'] = 'error'
+            else:
+                if result.find('Errors')>0:
+                    task['summary'] = 'error'
+                elif result.find('Warning')>0:
+                    task['summary'] = 'warning'
+                else:
+                    task['summary'] = 'pass'
+
+    return tasks_logs[::-1]
 
 
 
