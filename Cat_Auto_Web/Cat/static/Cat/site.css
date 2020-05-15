@@ -1685,6 +1685,7 @@ text-overflow: ellipsis;
     .form-inline .custom-control-label {
       margin-bottom: 0; } }
 
+
 .btn {
   text-overflow : ellipsis;
   display: inline-block;
@@ -1724,6 +1725,7 @@ a.btn.disabled,
 fieldset:disabled a.btn {
   pointer-events: none; }
 
+  
 .btn-primary {
   color: #fff;
   background-color: #12bbad;

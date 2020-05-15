@@ -258,49 +258,6 @@ class Unknowlogtable(models.Model):
         db_table = 'UnknowLogTable'
 
 
-class Taskitem(models.Model):
-    # Field name made lowercase.
-    taskitem = models.TextField(db_column='TaskItem', blank=True, null=True)
-    # Field name made lowercase.
-    taskindex = models.BigIntegerField(
-        db_column='TaskIndex', blank=True, null=True)
-    # Field name made lowercase.
-    tasktype = models.CharField(
-        db_column='TaskType', max_length=30, blank=True, null=True)
-    # Field name made lowercase.
-    id = models.BigIntegerField(db_column='ID', primary_key=True)
-
-    class Meta:
-        managed = False
-        db_table = 'TaskItem'
-
-
-class Catfiles(models.Model):
-    stream_id = models.CharField(unique=True, max_length=36)
-    file_stream = models.BinaryField(blank=True, null=True)
-    name = models.CharField(max_length=255)
-    # This field type is a guess.
-    path_locator = models.TextField(primary_key=True)
-    parent_path_locator = models.ForeignKey(
-        'self', models.DO_NOTHING, db_column='parent_path_locator', blank=True, null=True)
-    file_type = models.CharField(max_length=255, blank=True, null=True)
-    cached_file_size = models.BigIntegerField(blank=True, null=True)
-    creation_time = models.TextField()  # This field type is a guess.
-    last_write_time = models.TextField()  # This field type is a guess.
-    # This field type is a guess.
-    last_access_time = models.TextField(blank=True, null=True)
-    is_directory = models.BooleanField()
-    is_offline = models.BooleanField()
-    is_hidden = models.BooleanField()
-    is_readonly = models.BooleanField()
-    is_archive = models.BooleanField()
-    is_system = models.BooleanField()
-    is_temporary = models.BooleanField()
-
-    class Meta:
-        managed = False
-        db_table = 'catfiles'
-        unique_together = (('parent_path_locator', 'name'),)
 
 class Erdtable(models.Model):
     id = models.BigAutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
@@ -315,3 +272,19 @@ class Erdtable(models.Model):
     class Meta:
         managed = False
         db_table = 'ERDTable'
+
+
+class TestScripts(models.Model):
+    name = models.CharField(primary_key=True, max_length=255)
+    path = models.TextField()
+    tool = models.CharField(max_length=20, blank=True, null=True)
+    wwan = models.BooleanField(blank=True, null=True)
+    wlan = models.BooleanField(blank=True, null=True)
+    lan = models.BooleanField(blank=True, null=True)
+    bt = models.BooleanField(blank=True, null=True)
+    nic = models.BooleanField(blank=True, null=True)
+    rfid = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'test_scripts'

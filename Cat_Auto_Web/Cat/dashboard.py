@@ -3,22 +3,43 @@ from Cat.models import CatInfo
 from Cat.models import Erdtable
 import re
 
-def list_uut():
+def list_uut(**kwargs):
+    if kwargs:
+        sn = kwargs['sn']
+        platform = kwargs['platform']
+        tag = kwargs['tag']
+        if sn:
+            catinfo = list(CatInfo.objects.filter(sn__contains=sn).values().order_by('-lastusedtime'))
+        elif platform:
+            catinfo = list(CatInfo.objects.filter(platform__contains=platform).values().order_by('-lastusedtime'))
+        elif tag:
+            catinfo = list(CatInfo.objects.filter(tag__contains=tag).values().order_by('-lastusedtime')) 
+        else:
+            catinfo = list(CatInfo.objects.all().values().order_by('-lastusedtime'))
+    else:
+        catinfo = list(CatInfo.objects.all().values().order_by('-lastusedtime'))
 
-    catinfo = list(CatInfo.objects.all().values().order_by('-lastusedtime'))
     erdtable_modules_hwid = Erdtable.objects.all().values('short_name', 'vender_id', 'device_id', 'subsys_vender_id', 'subsys_device_id')
 
     def hwid_split(hwid):
         spliters_layer1 = ['\\\\', '&']
         spliters_layer2 = ['VEN','DEV','PID','VID','SUBSYS','NXP']
-        hwid_temp = hwid
-        hwid = re.split('['+'|'.join(spliters_layer1)+']', hwid)
-        hwid = [_h for _h in hwid if any(__h in _h for __h in spliters_layer2)]
-        hwid = [_h.replace('NXP','NXP_') if 'NXP' in _h else _h for _h in hwid]
-        hwid = [_h[_h.index('_')+1:] for _h in hwid]
-        if not hwid:
-            return hwid_temp
-        return hwid
+
+        if hwid:
+            hwid_temp = hwid
+            try:
+                hwid = re.split('['+'|'.join(spliters_layer1)+']', hwid)
+                hwid = [_h for _h in hwid if any(__h in _h for __h in spliters_layer2)]
+                hwid = [_h.replace('NXP','NXP_') if 'NXP' in _h else _h for _h in hwid]
+                hwid = [_h[_h.index('_')+1:] for _h in hwid]
+            except TypeError as error:
+                print(hwid_temp)
+                print(error.args)
+            if not hwid:
+                return hwid_temp
+            return hwid
+        else:
+            return None
 
     def hwid_convertto_shortname(hwid_split_list):
         if len(hwid_split_list)<2:
@@ -31,6 +52,7 @@ def list_uut():
     def update_short_name(_catinfo):
         
         for i, uut in enumerate(_catinfo):
+            _catinfo[i]['status'] = _catinfo[i]['status'].strip()
             wlan = uut['wlan_module']
             bt = uut['bt_module']
             nic = uut['nic_module']

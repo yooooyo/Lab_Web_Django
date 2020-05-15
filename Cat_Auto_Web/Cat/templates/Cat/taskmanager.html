@@ -1,5 +1,228 @@
 {% extends "Cat/layout.html" %}
 
 {% block content %}
+<div class="container">
+    <div class="py-5">
+        <form method="" action="">
+            <div class="row">
+                <div class="col-md-12 mb-2">
+                    <select class="custom-select" id="snSelected" multiple disabled>
+                        {% for sn in sn_list %}
+                            <option value="{{sn}}">{{sn}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-2">
+                  <div class="list-group" id="list-tab" role="tablist">
+                    <a class="list-group-item list-group-item-action active" id="list-pvt-list" data-toggle="list" href="#list-pvt" role="tab" aria-controls="pvt" aria-selected="true">WinPVT</a>
+                    <a class="list-group-item list-group-item-action" id="list-pws-list" data-toggle="list" href="#list-pws" role="tab" aria-controls="pws">PowerStress</a>
+                    <a class="list-group-item list-group-item-action" id="list-wwan-list" data-toggle="list" href="#list-wwan" role="tab" aria-controls="wwan">WWAN Test Case</a>
+                    <a class="list-group-item list-group-item-action" id="list-wlan-list" data-toggle="list" href="#list-wlan" role="tab" aria-controls="wlan">WLAN Test Case</a>
+                    <a class="list-group-item list-group-item-action" id="list-lan-list" data-toggle="list" href="#list-lan" role="tab" aria-controls="lan">LAN Test Case</a>
+                </div>
+                </div>
+                <div class="col-8">
+                  <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade active show" id="list-pvt" role="tabpanel" aria-labelledby="list-pvt-list">
+                        <select class="custom-select" id="select-pvt" size="10" multiple>
+                            {% if pvt %}
+                                {% for file in pvt %}
+                                    <option value="{{file}}">{{file}}</option>
+                                {% endfor %}
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="tab-pane fade" id="list-pws" role="tabpanel" aria-labelledby="list-pws-list">
+                        <select class="custom-select" id="select-pws" size="10" multiple>
 
+                            {% if pws %}
+                                {% for file in pws %}
+                                    <option value="{{file}}">{{file}}</option>
+                                {% endfor %}
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="tab-pane fade" id="list-wwan" role="tabpanel" aria-labelledby="list-wwan-list">
+                        <select class="custom-select" id="select-wwan" size="10" multiple>
+                            
+                            {% if wwan %}
+                                {% for file in wwan %}
+                                    <option value="{{file}}">{{file}}</option>
+                                {% endfor %}
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="tab-pane fade" id="list-wlan" role="tabpanel" aria-labelledby="list-wlan-list">
+                        <select class="custom-select" id="select-wlan" size="10" multiple>
+                            
+                            {% if wlan %}
+                                {% for file in wlan %}
+                                    <option value="{{file}}">{{file}}</option>
+                                {% endfor %}
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="tab-pane fade" id="list-lan" role="tabpanel" aria-labelledby="list-lan-list">
+                        <select class="custom-select" id="select-lan" size="10" multiple>
+                            {% if lan %}
+                                {% for file in lan %}
+                                    <option value="{{file}}">{{file}}</option>
+                                {% endfor %}
+                            {% endif %}
+                        </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-2">                     
+                    <div class="btn-group-vertical h-100 float-right">
+                        <button type="button" class="btn btn-outline-primary border-white" onclick="addSelectedScripts()"><i class="fa fa-2x fa-plus-circle"></i></button>
+                        <button type="button" class="btn btn-outline-primary border-white" onclick="removeSelectedScripts()"><i class="fa fa-2x fa-minus-circle"></i></button>
+                        <button type="button" class="btn btn-outline-primary border-white" onclick="moveUpSelectedScripts()"><i class="fa fa-2x fa-arrow-circle-up"></i></button>
+                        <button type="button" class="btn btn-outline-primary border-white" onclick="moveDownSelectedScripts()"><i class="fa fa-2x fa-arrow-circle-down"></i></button>
+                        <button type="button" class="btn btn-outline-primary border-white" onclick="clearSelectedAllScripts()"><i class="fa fa-2x fa-trash"></i></button>
+
+                    </div>
+                </div>
+                <div class="col-4 mb-2 mt-2" style="text-align:left;">                   
+                    <div class="alert alert-light rounded" role="alert">
+                        Add  <span class="badge badge-pill badge-primary" id="task-cnts"> 0 </span>  tasks    
+                    </div>
+                </div>
+                <div class="col-4 mb-2 mt-2" style="text-align: center;">                   
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-outline-primary border-white" onclick="addAllScripts()"><i class="fa fa-2x fa-angle-double-down"></i></button>
+                    </div>
+                </div>
+                <div class="col-4" style="text-align: center;">                   
+
+                </div>
+
+                <div class="col-12" style="text-align: center;">                   
+                    <select class="custom-select" id="scripts-added-list" size="10" multiple>
+                        
+                    </select>
+                </div>
+                <div class="col-12" style="text-align: center;">                   
+                    <div class="btn-group mt-1" role="group">
+                        <button type="button" class="btn btn-outline-primary border-white" onclick="AjaxSubmit()"><i class="fa fa-2x fa-save"></i></button>
+                        {% csrf_token %}
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    function AjaxSubmit(){
+        var sn = [] 
+        $('#snSelected').children().each(function(){
+            sn.push($(this).val()); // store in an array for reuse
+        });
+
+        scripts = []
+        $('#scripts-added-list').children().each(function(){            
+            scripts.push($(this).val()); // store in an array for reuse
+        });
+
+        sn=JSON.stringify(sn)
+        sn=JSON.parse(sn)
+        console.log(sn)
+        scripts=JSON.stringify(scripts)
+        scripts=JSON.parse(scripts)
+        console.log(scripts)
+        $.ajax({
+            url:"/ajax_taskAdd/",
+            type:"POST",
+            data:{
+                sn:sn,
+                scripts:scripts,
+                csrfmiddlewaretoken:$("[name = 'csrfmiddlewaretoken']").val()
+            },
+            success: function(resp){
+                alert ("Add successfully !!");
+            }
+        })
+    }
+
+    function catchShowedSelect(){
+        var select = document.getElementsByClassName("show");
+        if(select.length==1){
+            return select.item(0).firstElementChild;
+        }
+    }
+    function catchSelectedOptions(){
+        var select = catchShowedSelect();
+        var selected = [];
+        for(var i=0;i<select.options.length;i++){
+            if(select.options[i].selected){
+                selected.push(select.options[i].cloneNode(true));
+            }
+        }
+        return selected
+    }
+
+    function addAllScripts(){
+        var scriptList = document.getElementById("scripts-added-list");
+        var select = catchShowedSelect(); 
+        scriptList.innerHTML = select.innerHTML;
+        countAddedTasks()
+    }
+
+    function addSelectedScripts(){
+        var addList = document.getElementById("scripts-added-list");
+        var selectedList = catchSelectedOptions();
+        if(selectedList.length>0){
+            for(var i=0;i<selectedList.length;i++){
+                addList.append(selectedList[i]);
+            }
+        }
+        countAddedTasks()
+    }
+
+    function removeSelectedScripts(){
+        var scriptList = document.getElementById("scripts-added-list");
+        var temp = document.createElement("select");
+        for(var i=0; i<scriptList.options.length; i++){
+            if(scriptList.options[i].selected == false){
+                temp.append(scriptList.options[i].cloneNode(true))
+            }
+        }
+        scriptList.innerHTML = temp.innerHTML;
+        countAddedTasks()
+    }
+
+    function moveUpSelectedScripts(){
+        var scriptList = document.getElementById("scripts-added-list");
+        selected_index = scriptList.selectedIndex;
+        if(selected_index > 0){
+            save = scriptList[selected_index-1];
+            scriptList.remove(selected_index-1);
+            scriptList.add(save,selected_index);
+        }
+        countAddedTasks()
+    }
+
+    function moveDownSelectedScripts(){
+        var scriptList = document.getElementById("scripts-added-list");
+        selected_index = scriptList.selectedIndex;
+        if(selected_index < scriptList.options.length-1){
+            save = scriptList[selected_index+1];
+            scriptList.remove(selected_index+1);
+            scriptList.add(save,selected_index);
+        }
+        countAddedTasks()
+    }
+
+    function clearSelectedAllScripts(){
+        var scriptList = document.getElementById("scripts-added-list");
+        scriptList.innerHTML=null;
+        countAddedTasks()
+    }
+
+    function countAddedTasks(){
+        var cnt = document.getElementById("scripts-added-list").options.length;
+        document.getElementById("task-cnts").innerHTML = cnt;
+    }
+
+</script>
 {% endblock %}
