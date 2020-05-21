@@ -72,6 +72,12 @@
                         </select>
                     </div>
                   </div>
+                  <div class="input-group mt-3 mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="tag-addon">Tag</span>
+                    </div>
+                    <input type="text" class="form-control" aria-describeby="tag-addon" id="tag">
+                  </div>
                 </div>
                 <div class="col-2">                     
                     <div class="btn-group-vertical h-100 float-right">
@@ -124,6 +130,8 @@
             scripts.push($(this).val()); // store in an array for reuse
         });
 
+        tag = document.getElementById('tag').value;
+
         sn=JSON.stringify(sn)
         sn=JSON.parse(sn)
         console.log(sn)
@@ -136,6 +144,7 @@
             data:{
                 sn:sn,
                 scripts:scripts,
+                tag:tag,
                 csrfmiddlewaretoken:$("[name = 'csrfmiddlewaretoken']").val()
             },
             success: function(resp){

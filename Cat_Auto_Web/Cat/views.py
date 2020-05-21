@@ -48,8 +48,10 @@ def ajax_taskAdd(request):
     if request.is_ajax():
         uuts = request.POST.getlist('sn[]')
         scripts = request.POST.getlist('scripts[]')
-        t_mgr.add_scripts(uuts,scripts)
+        tag = request.POST.get('tag')
+        t_mgr.add_scripts(uuts,scripts,tag)
         return render(request,'Cat/taskmanager.html')
 
 def about(request):
     return render(request, 'Cat/about.html')
+
