@@ -42,7 +42,9 @@ def list_uut(**kwargs):
             return None
 
     def hwid_convertto_shortname(hwid_split_list):
-        if len(hwid_split_list)<2:
+        if not hwid_split_list:
+            return None
+        if len(hwid_split_list) < 2:
             return None
         short_name = [device['short_name'] for device in erdtable_modules_hwid if ((device['vender_id'] == hwid_split_list[0]) and (device['device_id'] == hwid_split_list[1]))]
         if not any(short_name):
