@@ -1,6 +1,7 @@
 .idea/*
 .env/*
 .vscode/*
+venv/*
 
 Cat_Auto_Web/__pycache__/*
 Cat_Auto_Web/Cat/__pycache__/*
