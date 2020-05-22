@@ -25,7 +25,7 @@ SECRET_KEY = '$we4#8u2l-2frppn8iyuo7fs-j8n_&arw-0t(a%^31&(&^h92-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -79,11 +79,13 @@ DATABASES = {
         'NAME': 'test',				            # 自定義資料庫連線名
         'USER': 'cat_user',					                # 資料庫連線賬戶
         'PASSWORD': 'P@ssw0rd',				        # 資料庫連線密碼
-        'HOST': 'lab_server\SQLEXPRESS',				            # 資料庫服務地址
+        'HOST': '192.168.1.72',				            # 資料庫服務地址
         'PORT': '49173',					                # 資料庫連線埠
         'OPTIONS':{
-            'driver':'SQL Server Native Client 11.0',	# ODBC連線應用驅動
-            'MARS_Connection': True,
+            'driver':'FreeTDS',	# ODBC連線應用驅動
+	    'unicode_results':True,
+            'host_is_server': True,
+	    'extra_aprams':'tds_version=7.4',
         }
     }
 }
@@ -124,4 +126,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL =  '/static/'
+
+#STATIC_ROOT = BASE_DIR + STATIC_URL
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
+print('STATIC_ROOT :' ,STATIC_ROOT)
