@@ -54,7 +54,8 @@ def list_uut(**kwargs):
     def update_short_name(_catinfo):
         
         for i, uut in enumerate(_catinfo):
-            _catinfo[i]['status'] = _catinfo[i]['status'].strip()
+            if _catinfo[i]['status']:
+                _catinfo[i]['status'] = _catinfo[i]['status'].strip()
             wlan = uut['wlan_module']
             bt = uut['bt_module']
             nic = uut['nic_module']

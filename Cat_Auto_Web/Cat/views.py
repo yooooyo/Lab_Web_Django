@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from Cat import testresult as t_result
 from Cat import dashboard as d_board
 from Cat import taskmanager as t_mgr
@@ -38,6 +38,10 @@ def taskmanager(request):
             'lan':lan,
         }
         return render(request, 'Cat/taskmanager.html',data)
+def task_delete(request):
+    task_ids = request.POST.getlist('select_taskid')
+    t_result.delete_task(task_ids)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 def ajax_submit(request):
     if request.method == 'POST':
