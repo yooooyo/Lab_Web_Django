@@ -5,6 +5,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import re
 
+def delete_task(ids):
+    if ids:
+        for id in ids:
+            Tasktable.objects.get(id=id).delete()
+
 def capturelog(sn):
     tasks = list(Tasktable.objects.filter(sn=sn).values())
     testlogs = list(Testlogtable.objects.filter(sn=sn).values())

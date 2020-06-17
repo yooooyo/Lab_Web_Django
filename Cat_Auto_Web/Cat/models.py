@@ -20,7 +20,7 @@ class Tasktable(models.Model):
     series = models.TextField(blank=True, null=True)
     local_id = models.IntegerField(blank=True, null=True)
     result_id = models.TextField(blank=True, null=True)
-
+    ap = models.TextField(blank=True, null=True)
     class Meta:
         db_table = 'taskTable'
 
@@ -97,7 +97,7 @@ class CatInfo(models.Model):
     # Field name made lowercase. Field renamed to remove unsuitable characters.
     wwan_modem = models.TextField(
         db_column='WWAN Modem', blank=True, null=True)
-
+    ap = models.TextField(db_column='AP', blank=True, null=True)  # Field name made lowercase.
     class Meta:
         db_table = 'CAT_info'
 
@@ -288,3 +288,43 @@ class TestScripts(models.Model):
     class Meta:
         managed = False
         db_table = 'test_scripts'
+
+
+
+class Ap(models.Model):
+    no = models.IntegerField(db_column='No',primary_key=True)  # Field name made lowercase.
+    type = models.CharField(db_column='Type', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    platform = models.CharField(db_column='Platform', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    vender = models.CharField(db_column='Vender', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    select = models.CharField(db_column='Select', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    cycles = models.FloatField(db_column='Cycles', blank=True, null=True)  # Field name made lowercase.
+    cpu = models.CharField(db_column='CPU', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    wi1_chip1 = models.CharField(db_column='WI1 chip1', max_length=255, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    wi1_protocols = models.CharField(db_column='WI1 protocols', max_length=255, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    wi1_chip2 = models.CharField(db_column='WI1 chip2', max_length=255, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    wi2_protocols = models.CharField(db_column='WI2 protocols', max_length=255, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    support_lte = models.CharField(db_column='Support LTE', max_length=255, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    number_5g = models.CharField(db_column='5G', max_length=255, blank=True, null=True)  # Field name made lowercase. Field renamed because it wasn't a valid Python identifier.
+    network_technology_standard = models.CharField(db_column='Network technology standard', max_length=255, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    adapter = models.CharField(db_column='Adapter', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    location = models.CharField(db_column='Location', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    status = models.CharField(db_column='Status', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    admin_id = models.CharField(db_column='admin ID', max_length=255, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    admin_pw = models.CharField(db_column='admin PW', max_length=255, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    ssid = models.CharField(db_column='SSID', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    pw = models.FloatField(db_column='PW', blank=True, null=True)  # Field name made lowercase.
+    ssid_5g = models.CharField(db_column='SSID_5G', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    pw1 = models.FloatField(db_column='PW1', blank=True, null=True)  # Field name made lowercase.
+    number_2_4g_bssid = models.CharField(db_column='2#4G BSSID', max_length=255, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2_4g_band = models.CharField(db_column='2#4G Band', max_length=255, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_5g_bssid = models.CharField(db_column='5G BSSID', max_length=255, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_5g_band = models.FloatField(db_column='5G Band', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    fw_version = models.CharField(db_column='FW Version', max_length=255, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    remark = models.CharField(db_column='Remark', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    f30 = models.CharField(db_column='F30', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    active = models.BooleanField()
+
+    class Meta:
+        managed = False
+        db_table = 'AP'
+

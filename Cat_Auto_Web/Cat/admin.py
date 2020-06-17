@@ -7,7 +7,7 @@ class CatInfoAdmin(admin.ModelAdmin):
     search_fields = list_display.copy()
 
 class TaskTableAdmin(admin.ModelAdmin):
-    list_display = ['id','sn','task','state','result','starttime','finishtime','series','local_id','result_id']
+    list_display = ['id','sn','task','state','result','starttime','finishtime','series','local_id','result_id','ap']
     list_filter = list_display.copy()
     search_fields = list_display.copy()
 
@@ -91,8 +91,18 @@ class TestScriptsAdmin(admin.ModelAdmin):
     #         '%d stories were successfully marked as published.',
     #         updated,
     #     ) % updated, messages.SUCCESS)
+    
+class APTableAdmin(admin.ModelAdmin):
+    list_display = ['no','type','platform','vender','select','cycles','cpu','wi1_chip1','wi1_protocols','wi1_chip2','wi2_protocols','support_lte','number_5g','network_technology_standard','adapter','location','status','admin_id','admin_pw','ssid','pw','ssid_5g','pw1','number_2_4g_bssid','number_2_4g_band','number_5g_bssid','number_5g_band','fw_version','remark','f30','active']
+    list_filter = list_display.copy()
+    search_fields = list_display.copy()
+    actions = ['active']
+    def active(self, request, queryset):
+        queryset.update(active=True)
+    active.short_description = "active"
 
 admin.site.register(models.CatInfo,CatInfoAdmin)
 admin.site.register(models.Tasktable,TaskTableAdmin)
 admin.site.register(models.Erdtable,ERDTableAdmin)
 admin.site.register(models.TestScripts,TestScriptsAdmin)
+admin.site.register(models.Ap,APTableAdmin)

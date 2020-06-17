@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from Cat import testresult as t_result
 from Cat import dashboard as d_board
 from Cat import taskmanager as t_mgr
@@ -24,6 +24,7 @@ def taskmanager(request):
     sn_list = request.POST.getlist('selected_sn',)
     if sn_list:
         scripts = t_mgr.get_cat_scripts()
+        aps = t_mgr.get_ap_ssid()
         pvt = [script['name'] for script in scripts if script['tool']=='winpvt']
         pws = [script['name'] for script in scripts if script['tool']=='powerstress']
         wwan = [script['name'] for script in scripts if script['wwan']]
@@ -36,8 +37,13 @@ def taskmanager(request):
             'wwan':wwan,
             'wlan':wlan,
             'lan':lan,
+            'aps':aps
         }
         return render(request, 'Cat/taskmanager.html',data)
+def task_delete(request):
+    task_ids = request.POST.getlist('select_taskid')
+    t_result.delete_task(task_ids)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 def ajax_submit(request):
     if request.method == 'POST':
@@ -49,7 +55,8 @@ def ajax_taskAdd(request):
         uuts = request.POST.getlist('sn[]')
         scripts = request.POST.getlist('scripts[]')
         tag = request.POST.get('tag')
-        t_mgr.add_scripts(uuts,scripts,tag)
+        ap = request.POST.get('ap')
+        t_mgr.add_scripts(uuts,scripts,ap,tag)
         return render(request,'Cat/taskmanager.html')
 
 def about(request):
