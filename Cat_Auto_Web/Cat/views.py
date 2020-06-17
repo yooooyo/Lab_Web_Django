@@ -24,6 +24,7 @@ def taskmanager(request):
     sn_list = request.POST.getlist('selected_sn',)
     if sn_list:
         scripts = t_mgr.get_cat_scripts()
+        aps = t_mgr.get_ap_ssid()
         pvt = [script['name'] for script in scripts if script['tool']=='winpvt']
         pws = [script['name'] for script in scripts if script['tool']=='powerstress']
         wwan = [script['name'] for script in scripts if script['wwan']]
@@ -36,6 +37,7 @@ def taskmanager(request):
             'wwan':wwan,
             'wlan':wlan,
             'lan':lan,
+            'aps':aps
         }
         return render(request, 'Cat/taskmanager.html',data)
 def task_delete(request):
@@ -53,7 +55,8 @@ def ajax_taskAdd(request):
         uuts = request.POST.getlist('sn[]')
         scripts = request.POST.getlist('scripts[]')
         tag = request.POST.get('tag')
-        t_mgr.add_scripts(uuts,scripts,tag)
+        ap = request.POST.get('ap')
+        t_mgr.add_scripts(uuts,scripts,ap,tag)
         return render(request,'Cat/taskmanager.html')
 
 def about(request):
