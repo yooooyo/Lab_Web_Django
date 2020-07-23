@@ -22,33 +22,34 @@ def testresult(request,sn):
 
 def taskmanager(request):
     sn_list = request.POST.getlist('selected_sn',)
-    if sn_list:
-        scripts = t_mgr.get_cat_scripts()
-        aps = t_mgr.get_ap_ssid()
-        pvt = [script['name'] for script in scripts if script['tool']=='winpvt']
-        pws = [script['name'] for script in scripts if script['tool']=='powerstress']
-        wwan = [script['name'] for script in scripts if script['wwan']]
-        wlan = [script['name'] for script in scripts if script['wlan']]
-        lan = [script['name'] for script in scripts if script['lan']]
-        data={
-            'sn_list':sn_list,
-            'pvt':pvt,
-            'pws':pws,
-            'wwan':wwan,
-            'wlan':wlan,
-            'lan':lan,
-            'aps':aps
-        }
-        return render(request, 'Cat/taskmanager.html',data)
+    if 'delete-uut' in request.POST:
+        if sn_list:
+            d_board.delete_uut(sn_list)
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    elif 'add-task' in request.POST:
+        if sn_list:
+            scripts = t_mgr.get_cat_scripts()
+            aps = t_mgr.get_ap_ssid()
+            pvt = [script['name'] for script in scripts if script['tool']=='winpvt']
+            pws = [script['name'] for script in scripts if script['tool']=='powerstress']
+            wwan = [script['name'] for script in scripts if script['wwan']]
+            wlan = [script['name'] for script in scripts if script['wlan']]
+            lan = [script['name'] for script in scripts if script['lan']]
+            data={
+                'sn_list':sn_list,
+                'pvt':pvt,
+                'pws':pws,
+                'wwan':wwan,
+                'wlan':wlan,
+                'lan':lan,
+                'aps':aps
+            }
+            return render(request, 'Cat/taskmanager.html',data)
+
 def task_delete(request):
     task_ids = request.POST.getlist('select_taskid')
     t_result.delete_task(task_ids)
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
-
-def ajax_submit(request):
-    if request.method == 'POST':
-        print(request.POST) 
-    return render(request,'Cat/ajax_submit.html') 
 
 def ajax_taskAdd(request):
     if request.is_ajax():

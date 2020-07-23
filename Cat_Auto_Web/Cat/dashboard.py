@@ -90,7 +90,9 @@ def list_uut(**kwargs):
         
     return update_short_name(catinfo)
 
-
+def delete_uut(sn_list):
+    for sn in sn_list:
+        CatInfo.objects.get(sn=sn).delete()
 
 # class UUTListView(ListView):
 #     model = CatInfo
