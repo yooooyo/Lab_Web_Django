@@ -92,9 +92,10 @@
                             <span class="input-group-text" for="apSelectMenu" style="width: 60px;">AP</span>
                         </div>
                         <select class="custom-select" id="apSelectMenu">
-                            <option value='CAT_58_Netgear_AX8_5G' selected>Lab_Google_Mesh</option>
+                            <option value='CAT_Server' selected>CAT_Server</option>
+                            <option value='Disconnect' selected>DisConnect</option>
                             {% for ap in aps %}
-                                {% if ap != 'CAT_58_Netgear_AX8_5G' %}
+                                {% if ap != 'CAT_Server' %}
                                     <option value="{{ap}}">{{ap}}</option>
                                 {% endif %}
                             {% endfor %}
