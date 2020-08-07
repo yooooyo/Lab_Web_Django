@@ -21,6 +21,7 @@ class Tasktable(models.Model):
     local_id = models.IntegerField(blank=True, null=True)
     result_id = models.TextField(blank=True, null=True)
     ap = models.TextField(blank=True, null=True)
+    need_restart = models.BooleanField()
     class Meta:
         db_table = 'taskTable'
 

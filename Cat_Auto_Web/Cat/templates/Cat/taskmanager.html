@@ -80,6 +80,31 @@
                                 {% endfor %}
                             {% endif %}
                         </select>
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="input-group mb-2 mt-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" for="restartSelectMenu" style="width: 80px; box-sizing: border-box; height: 38.242px;">Restart</span>
+                                </div>
+                                <select class="custom-select" id="restartSelectMenu" style="box-sizing: border-box; height: 38.242px;">
+                                    <option value='True' selected>True</option>
+                                    <option value='False' selected>False</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="input-group mb-2 mt-2">
+                                <div class="custom-file">
+                                  <input type="file" class="custom-file-input" id="inputGroupFile04" accept=".inf" data-target="file-uploader" aria-describedby="inputGroupFileAddon04">
+                                  <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                                </div>
+                                <div class="input-group-append">
+                                  <button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Upload</button>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+
                     </div>
                   </div>
                   <div class="input-group mt-3 mb-3">
@@ -142,6 +167,10 @@
     </div>
 </div>
 <script>
+    function AjaxFileUpload() {
+        
+    }
+
     function AjaxSubmit(){
         var sn = [] 
         $('#snSelected').children().each(function(){
