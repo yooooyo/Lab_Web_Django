@@ -79,10 +79,7 @@ host = None
 if sys.platform in {'linux2','linux'} :
     host = '192.168.1.72'
     options = {
-            'driver':'FreeTDS',	# linux ODBC連線應用驅動
-	        'unicode_results':True,
-            'host_is_server': True,
-	        'extra_aprams':'tds_version=7.4',
+            'driver':'ODBC Driver 17 for SQL Server'
     }
 else:
     host = 'lab_server\SQLEXPRESS'
@@ -97,7 +94,7 @@ DATABASES = {
         'NAME': 'test',				            # 自定義資料庫連線名
         'USER': 'cat_user',					                # 資料庫連線賬戶
         'PASSWORD': 'P@ssw0rd',				        # 資料庫連線密碼
-        'HOST': host,				            # 資料庫服務地址
+        'HOST': r'lab_server\SQLEXPRESS',				            # 資料庫服務地址
         'PORT': '49173',					                # 資料庫連線埠
         'OPTIONS':options 
         
