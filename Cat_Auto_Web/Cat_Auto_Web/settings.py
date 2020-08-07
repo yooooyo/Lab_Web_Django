@@ -75,12 +75,10 @@ WSGI_APPLICATION = 'Cat_Auto_Web.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 options = None
+host = None
 if sys.platform in {'linux2','linux'} :
     options = {
-            'driver':'FreeTDS',	# ODBC連線應用驅動
-	        'unicode_results':True,
-            'host_is_server': True,
-	        'extra_aprams':'tds_version=7.4',
+            'driver':'ODBC Driver 17 for SQL Server'
     }
 else:
     options = {
@@ -94,8 +92,7 @@ DATABASES = {
         'NAME': 'test',				            # 自定義資料庫連線名
         'USER': 'cat_user',					                # 資料庫連線賬戶
         'PASSWORD': 'P@ssw0rd',				        # 資料庫連線密碼
-        # 'HOST': '192.168.1.72',				            # 資料庫服務地址
-        'HOST': 'lab_server\SQLEXPRESS',				            # 資料庫服務地址
+        'HOST': r'lab_server\SQLEXPRESS',				            # 資料庫服務地址
         'PORT': '49173',					                # 資料庫連線埠
         'OPTIONS':options 
         
@@ -142,4 +139,3 @@ STATIC_URL =  '/static/'
 
 #STATIC_ROOT = BASE_DIR + STATIC_URL
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
-print('STATIC_ROOT :' ,STATIC_ROOT)
