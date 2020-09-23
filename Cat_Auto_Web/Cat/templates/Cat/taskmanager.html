@@ -14,11 +14,12 @@
                 </div>
                 <div class="col-2">
                   <div class="list-group" id="list-tab" role="tablist">
-                    <a class="list-group-item list-group-item-action active" id="list-pvt-list" data-toggle="list" href="#list-pvt" role="tab" aria-controls="pvt" aria-selected="true">WinPVT</a>
-                    <a class="list-group-item list-group-item-action" id="list-pws-list" data-toggle="list" href="#list-pws" role="tab" aria-controls="pws">PowerStress</a>
-                    <a class="list-group-item list-group-item-action" id="list-wwan-list" data-toggle="list" href="#list-wwan" role="tab" aria-controls="wwan">WWAN Test Case</a>
-                    <a class="list-group-item list-group-item-action" id="list-wlan-list" data-toggle="list" href="#list-wlan" role="tab" aria-controls="wlan">WLAN Test Case</a>
-                    <a class="list-group-item list-group-item-action" id="list-lan-list" data-toggle="list" href="#list-lan" role="tab" aria-controls="lan">LAN Test Case</a>
+                    <a class="list-group-item list-group-item-action active" id="list-pvt-list" data-toggle="list" href="#list-pvt" role="tab" aria-controls="pvt" aria-selected="true"><span>WinPVT</span></a>
+                    <a class="list-group-item list-group-item-action" id="list-pws-list" data-toggle="list" href="#list-pws" role="tab" aria-controls="pws"><span>PowerStress</span></a>
+                    <a class="list-group-item list-group-item-action" id="list-wwan-list" data-toggle="list" href="#list-wwan" role="tab" aria-controls="wwan"><span>WWAN Test Case</span></a>
+                    <a class="list-group-item list-group-item-action" id="list-wlan-list" data-toggle="list" href="#list-wlan" role="tab" aria-controls="wlan"><span>WLAN Test Case</span></a>
+                    <a class="list-group-item list-group-item-action" id="list-lan-list" data-toggle="list" href="#list-lan" role="tab" aria-controls="lan"><span>LAN Test Case</span></a>
+                    <a class="list-group-item list-group-item-action" id="list-lan-list" data-toggle="list" href="#list-driver" role="tab" aria-controls="driver"><span>Driver</span></a>
                 </div>
                 </div>
                 <div class="col-8">
@@ -71,20 +72,58 @@
                             {% endif %}
                         </select>
                     </div>
+                    <div class="tab-pane fade" id="list-driver" role="tabpanel" aria-labelledby="list-driver-list">
+                        <select class="custom-select" id="select-driver" size="10" multiple>
+                            {% if lan %}
+                                {% for file in lan %}
+                                    <option value="{{file}}">{{file}}</option>
+                                {% endfor %}
+                            {% endif %}
+                        </select>
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="input-group mb-2 mt-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" for="restartSelectMenu" style="width: 80px; box-sizing: border-box; height: 38.242px;">Restart</span>
+                                </div>
+                                <select class="custom-select" id="restartSelectMenu" style="box-sizing: border-box; height: 38.242px;">
+                                    <option value='True' selected>True</option>
+                                    <option value='False' selected>False</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="input-group mb-2 mt-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" for="driverMenu">Driver</span>
+                                </div>
+                                <select class="custom-select" id="driverMenu" style="box-sizing: border-box;">
+                                    {% if files %}
+                                        {% for file in files %}
+                                            <option value="{{file}}">{{file}}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
                   </div>
                   <div class="input-group mt-3 mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="tag-addon">Tag</span>
+                        <span class="input-group-text" id="tag-addon" style="width: 60px;">Tag</span>
                     </div>
                     <input type="text" class="form-control" aria-describeby="tag-addon" id="tag">
                     <div class="input-group mb-2 mt-2">
                         <div class="input-group-prepend">
-                            <label class="input-group-text" for="apSelectMenu">AP</label>
+                            <span class="input-group-text" for="apSelectMenu" style="width: 60px;">AP</span>
                         </div>
                         <select class="custom-select" id="apSelectMenu">
-                            <option value='Lab_Google_Mesh' selected>Lab_Google_Mesh</option>
+                            <option value='CAT_Server' selected>CAT_Server</option>
+                            <option value='Disconnect' selected>DisConnect</option>
                             {% for ap in aps %}
-                                {% if ap != 'Lab_Google_Mesh' %}
+                                {% if ap != 'CAT_Server' %}
                                     <option value="{{ap}}">{{ap}}</option>
                                 {% endif %}
                             {% endfor %}
@@ -99,7 +138,6 @@
                         <button type="button" class="btn btn-outline-primary border-white" onclick="moveUpSelectedScripts()"><i class="fa fa-2x fa-arrow-circle-up"></i></button>
                         <button type="button" class="btn btn-outline-primary border-white" onclick="moveDownSelectedScripts()"><i class="fa fa-2x fa-arrow-circle-down"></i></button>
                         <button type="button" class="btn btn-outline-primary border-white" onclick="clearSelectedAllScripts()"><i class="fa fa-2x fa-trash"></i></button>
-
                     </div>
                 </div>
                 <div class="col-4 mb-2 mt-2" style="text-align:left;">                   
@@ -132,6 +170,9 @@
     </div>
 </div>
 <script>
+
+
+
     function AjaxSubmit(){
         var sn = [] 
         $('#snSelected').children().each(function(){
@@ -145,6 +186,8 @@
 
         tag = document.getElementById('tag').value;
         ap = document.getElementById('apSelectMenu')
+        driver = document.getElementById('driverMenu').value;
+        need_restart = document.getElementById('restartSelectMenu').value;
         for(var i=0;i<ap.options.length;i++){
             if(ap.options[i].selected){
                 ap = ap.options[i].value
@@ -167,6 +210,8 @@
                 scripts:scripts,
                 tag:tag,
                 ap:ap,
+                driver:driver,
+                restart:need_restart,
                 csrfmiddlewaretoken:$("[name = 'csrfmiddlewaretoken']").val()
             },
             success: function(resp){

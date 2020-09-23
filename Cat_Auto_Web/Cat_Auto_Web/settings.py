@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -73,20 +74,30 @@ WSGI_APPLICATION = 'Cat_Auto_Web.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+options = None
+host = None
+if sys.platform in {'linux2','linux'} :
+    host = '192.168.1.72'
+    options = {
+            'driver':'ODBC Driver 17 for SQL Server'
+    }
+else:
+    host = 'lab_server\SQLEXPRESS'
+    options = {
+            'driver':'SQL Server Native Client 11.0',	#windows ODBC連線應用驅動
+            'MARS_Connection': True,
+    }
+
 DATABASES = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',			        # odbc連線固定寫法
         'NAME': 'test',				            # 自定義資料庫連線名
         'USER': 'cat_user',					                # 資料庫連線賬戶
         'PASSWORD': 'P@ssw0rd',				        # 資料庫連線密碼
-        'HOST': '192.168.1.72',				            # 資料庫服務地址
+        'HOST': r'lab_server\SQLEXPRESS',				            # 資料庫服務地址
         'PORT': '49173',					                # 資料庫連線埠
-        'OPTIONS':{
-            'driver':'FreeTDS',	# ODBC連線應用驅動
-	    'unicode_results':True,
-            'host_is_server': True,
-	    'extra_aprams':'tds_version=7.4',
-        }
+        'OPTIONS':options 
+        
     }
 }
 
@@ -130,4 +141,3 @@ STATIC_URL =  '/static/'
 
 #STATIC_ROOT = BASE_DIR + STATIC_URL
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
-print('STATIC_ROOT :' ,STATIC_ROOT)

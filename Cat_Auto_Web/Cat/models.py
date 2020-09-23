@@ -21,85 +21,42 @@ class Tasktable(models.Model):
     local_id = models.IntegerField(blank=True, null=True)
     result_id = models.TextField(blank=True, null=True)
     ap = models.TextField(blank=True, null=True)
+    need_restart = models.BooleanField()
     class Meta:
         db_table = 'taskTable'
 
 
 class CatInfo(models.Model):
-    # Field name made lowercase.
-    platform = models.CharField(
-        db_column='Platform', max_length=50, blank=True, null=True)
-    # Field name made lowercase.
-    sn = models.CharField(db_column='SN', primary_key=True, max_length=11)
-    # Field name made lowercase.
-    status = models.CharField(
-        db_column='STATUS', max_length=20, blank=True, null=True)
-    # Field name made lowercase.
-    currenttask = models.TextField(
-        db_column='CurrentTask', blank=True, null=True)
-    # Field name made lowercase.
-    os = models.CharField(db_column='OS', max_length=30, blank=True, null=True)
-    # Field name made lowercase.
-    image = models.CharField(
-        db_column='Image', max_length=30, blank=True, null=True)
-    # Field name made lowercase.
-    bios = models.CharField(
-        db_column='BIOS', max_length=30, blank=True, null=True)
-    # Field name made lowercase. Field renamed to remove unsuitable characters.
-    wlan_module = models.TextField(
-        db_column='WLAN Module', blank=True, null=True)
-    # Field name made lowercase. Field renamed to remove unsuitable characters.
-    wlan_driver = models.TextField(
-        db_column='WLAN Driver', blank=True, null=True)
-    # Field name made lowercase. Field renamed to remove unsuitable characters.
-    bt_module = models.TextField(db_column='BT Module', blank=True, null=True)
-    # Field name made lowercase. Field renamed to remove unsuitable characters.
-    bt_driver = models.TextField(db_column='BT Driver', blank=True, null=True)
-    # Field name made lowercase. Field renamed to remove unsuitable characters.
-    wwan_module = models.TextField(
-        db_column='WWAN Module', blank=True, null=True)
-    # Field name made lowercase. Field renamed to remove unsuitable characters.
-    wwan_driver = models.TextField(
-        db_column='WWAN Driver', blank=True, null=True)
-    # Field name made lowercase. Field renamed to remove unsuitable characters.
-    gnss_module = models.TextField(
-        db_column='GNSS Module', blank=True, null=True)
-    # Field name made lowercase. Field renamed to remove unsuitable characters.
-    gnss_driver = models.TextField(
-        db_column='GNSS Driver', blank=True, null=True)
-    # Field name made lowercase. Field renamed to remove unsuitable characters.
-    nic_module = models.TextField(
-        db_column='NIC Module', blank=True, null=True)
-    # Field name made lowercase. Field renamed to remove unsuitable characters.
-    nic_driver = models.TextField(
-        db_column='NIC Driver', blank=True, null=True)
-    # Field name made lowercase. Field renamed to remove unsuitable characters.
-    nfc_module = models.TextField(
-        db_column='NFC Module', blank=True, null=True)
-    # Field name made lowercase. Field renamed to remove unsuitable characters.
-    nfc_driver = models.TextField(
-        db_column='NFC Driver', blank=True, null=True)
-    # Field name made lowercase. Field renamed to remove unsuitable characters.
-    rfid_module = models.TextField(
-        db_column='RFID Module', blank=True, null=True)
-    # Field name made lowercase. Field renamed to remove unsuitable characters.
-    rfid_driver = models.TextField(
-        db_column='RFID Driver', blank=True, null=True)
-    # Field name made lowercase.
-    lastusedtime = models.DateTimeField(
-        db_column='LastUsedTime', blank=True, null=True)
-    # Field name made lowercase.
-    tag = models.CharField(
-        db_column='Tag', max_length=50, blank=True, null=True)
-    # Field name made lowercase. Field renamed to remove unsuitable characters.
-    wwan_firmware = models.TextField(
-        db_column='WWAN Firmware', blank=True, null=True)
-    # Field name made lowercase. Field renamed to remove unsuitable characters.
-    wwan_modem = models.TextField(
-        db_column='WWAN Modem', blank=True, null=True)
+    platform = models.CharField(db_column='Platform', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    sn = models.CharField(db_column='SN', primary_key=True, max_length=11)  # Field name made lowercase.
+    status = models.CharField(db_column='STATUS', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    currenttask = models.TextField(db_column='CurrentTask', blank=True, null=True)  # Field name made lowercase.
+    os = models.CharField(db_column='OS', max_length=30, blank=True, null=True)  # Field name made lowercase.
+    image = models.TextField(db_column='Image', blank=True, null=True)  # Field name made lowercase.
+    bios = models.CharField(db_column='BIOS', max_length=30, blank=True, null=True)  # Field name made lowercase.
+    wlan_module = models.TextField(db_column='WLAN Module', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    wlan_driver = models.TextField(db_column='WLAN Driver', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    bt_module = models.TextField(db_column='BT Module', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    bt_driver = models.TextField(db_column='BT Driver', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    wwan_module = models.TextField(db_column='WWAN Module', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    wwan_driver = models.TextField(db_column='WWAN Driver', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    gnss_module = models.TextField(db_column='GNSS Module', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    gnss_driver = models.TextField(db_column='GNSS Driver', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    nic_module = models.TextField(db_column='NIC Module', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    nic_driver = models.TextField(db_column='NIC Driver', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    nfc_module = models.TextField(db_column='NFC Module', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    nfc_driver = models.TextField(db_column='NFC Driver', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    rfid_module = models.TextField(db_column='RFID Module', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    rfid_driver = models.TextField(db_column='RFID Driver', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    lastusedtime = models.DateTimeField(db_column='LastUsedTime', blank=True, null=True)  # Field name made lowercase.
+    tag = models.TextField(db_column='Tag', blank=True, null=True)  # Field name made lowercase.
+    wwan_firmware = models.TextField(db_column='WWAN Firmware', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    wwan_modem = models.TextField(db_column='WWAN Modem', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
     ap = models.TextField(db_column='AP', blank=True, null=True)  # Field name made lowercase.
+
     class Meta:
-        db_table = 'CAT_info'
+        managed = False
+        db_table = 'cat_info'
 
 
 class Loglisttable(models.Model):
@@ -327,4 +284,5 @@ class Ap(models.Model):
     class Meta:
         managed = False
         db_table = 'AP'
+
 

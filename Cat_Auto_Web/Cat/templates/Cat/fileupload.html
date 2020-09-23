@@ -1,0 +1,12 @@
+{% extends 'Cat/layout.html' %}
+{% block content %}
+    <div class="container">
+        <div class="mt-5">
+
+            <form action="" method="post" enctype="multipart/form-data">
+                {{uploadform}}
+                <input type="submit" value="submit">{% csrf_token %}
+            </form>
+        </div>
+    </div>
+{% endblock content %}

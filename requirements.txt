@@ -3,9 +3,10 @@ asgiref==3.2.3
 astroid==2.4.0
 backcall==0.1.0
 colorama==0.4.3
+Cython==0.29.21 
 decorator==4.4.2
 distlib==0.3.0
-Django==2.2.13
+Django==2.1.0
 django-pyodbc-azure==2.1.0.0
 filelock==3.0.12
 importlib-metadata==1.6.0
@@ -20,7 +21,6 @@ pickleshare==0.7.5
 prompt-toolkit==3.0.5
 Pygments==2.6.1
 pylint==2.5.0
-pymssql==2.1.4
 pyodbc==4.0.30
 pytz==2019.3
 six==1.14.0
