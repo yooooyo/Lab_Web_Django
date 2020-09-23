@@ -94,14 +94,17 @@
                         </div>
                         <div class="col-7">
                             <div class="input-group mb-2 mt-2">
-                                <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="inputGroupFile04" accept=".inf" data-target="file-uploader" aria-describedby="inputGroupFileAddon04">
-                                  <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" for="driverMenu">Driver</span>
                                 </div>
-                                <div class="input-group-append">
-                                  <button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Upload</button>
-                                </div>
-                              </div>
+                                <select class="custom-select" id="driverMenu" style="box-sizing: border-box;">
+                                    {% if files %}
+                                        {% for file in files %}
+                                            <option value="{{file}}">{{file}}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
                         </div>
                     </div>
 
@@ -167,9 +170,8 @@
     </div>
 </div>
 <script>
-    function AjaxFileUpload() {
-        
-    }
+
+
 
     function AjaxSubmit(){
         var sn = [] 
@@ -184,6 +186,8 @@
 
         tag = document.getElementById('tag').value;
         ap = document.getElementById('apSelectMenu')
+        driver = document.getElementById('driverMenu').value;
+        need_restart = document.getElementById('restartSelectMenu').value;
         for(var i=0;i<ap.options.length;i++){
             if(ap.options[i].selected){
                 ap = ap.options[i].value
@@ -206,6 +210,8 @@
                 scripts:scripts,
                 tag:tag,
                 ap:ap,
+                driver:driver,
+                restart:need_restart,
                 csrfmiddlewaretoken:$("[name = 'csrfmiddlewaretoken']").val()
             },
             success: function(resp){

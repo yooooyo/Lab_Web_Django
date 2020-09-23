@@ -10,4 +10,5 @@ urlpatterns = [
     path("about/", views.about, name="about"),
     path("ajax_taskAdd/", views.ajax_taskAdd, name="ajax_taskAdd"),
     path("task_delete/", views.task_delete, name="task_delete"),
+    path("fileupload/", views.fileupload, name="fileupload"),
 ]
